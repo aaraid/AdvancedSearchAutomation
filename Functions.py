@@ -1,4 +1,5 @@
 from selenium import webdriver
+from chromedriver_py import binary_path
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
@@ -11,8 +12,9 @@ def BrowserSetup(URL):
         options = webdriver.ChromeOptions()
         options.add_argument("--start-maximized")
         global browser
-        #browser = webdriver.Chrome(chrome_options=options)
-        browser = webdriver.Chrome(executable_path=r"C:\chromedriver.exe", chrome_options=options) #If driver is not on PATH
+        #browser = webdriver.Chrome(chrome_options=options) #If driver is on PATH
+        #browser = webdriver.Chrome(executable_path=r"C:\chromedriver.exe", chrome_options=options) #If driver is not on PATH
+        browser = webdriver.Chrome(executable_path=binary_path, chrome_options=options) #It solves driver PATH issues
 
         browser.set_network_conditions( #simulate slow internet connection
         offline=False,
